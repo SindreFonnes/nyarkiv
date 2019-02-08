@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class CDArkiv implements CDarkivADT {
     private CD[] cdArray;
 
@@ -14,58 +16,87 @@ public class CDArkiv implements CDarkivADT {
         System.out.println("Arkivet er fult, slett en cd først!");
     }
 
-    public void slettCD(String cdTittel){
-        for(int i = 0; i< cdArray.length; i++){
-            if(cdArray[i].getNavn()==cdTittel) {
-                cdArray[i] = null;
-                return;
-            }
-        }
-        System.out.println("Fant ingen cder med det navnet");
-    }
-
     @Override
     public CD[] hentCdTabell() {
-        return new CD[0];
+        return cdArray;
     }
 
     @Override
     public void leggTilCd(CD nyCd) {
-
+        for (int i = 0; i < cdArray.length; i++){
+            if(cdArray[i]== null){
+                cdArray[i] = nyCd;
+                return;
+            }
+        }
     }
+
+
 
     @Override
     public boolean slettCd(int cdNr) {
+        for(int i = 0; i<cdArray.length; i++){
+            if(cdArray[i].getCdNr()==cdNr){
+                cdArray[i] = null;
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public CD[] sokTittel(String delstreng) {
-        return new CD[0];
+        int counter = 0;
+        for(int i = 0; i<cdArray.length; i++){
+            if(cdArray[i].getNavn().contains(delstreng)){
+                counter++;
+            }
+        }
+        if(counter>0){
+            CD[] relevantCDs = new CD[counter];
+            counter = 0;
+            for(int i = 0; i<cdArray.length; i++){
+                if(cdArray[i].getNavn().contains(delstreng)){
+                    relevantCDs[counter]= cdArray[i];
+                    counter++;
+                }
+            }
+            return relevantCDs;
+        }
+        return null;
     }
 
     @Override
     public CD[] sokArtist(String delstreng) {
-        int[] cdnummere= new int[cdArray.length];
-        int teller = 0;
+        int counter = 0;
         for(int i = 0; i<cdArray.length; i++){
-            if(cdArray[i].getArtist()==delstreng){
-                cdnummere[teller] = i;
-                teller ++;
+            if(cdArray[i].getArtist().contains(delstreng)){
+                counter++;
             }
         }
-        int teller2 = 0;
-        for(int i = 0; i< cdnummere.length; i++){
-            if(cdnummere[i]!=0){
-                teller2++;
+        if(counter>0){
+            CD[] relevantCDs = new CD[counter];
+            counter = 0;
+            for(int i = 0; i<cdArray.length; i++){
+                if(cdArray[i].getArtist().contains(delstreng)){
+                    relevantCDs[counter]= cdArray[i];
+                    counter++;
+                }
             }
+            return relevantCDs;
         }
-        return new CD[0];
+        return null;
     }
 
     @Override
     public int antallSjanger(Sjanger sjanger) {
-        return 0;
+        int counter = 0;
+        for(int i = 0; i<cdArray.length; i++){
+            if(cdArray[i].getSjanger().getSjangerNavn()==sjanger.getSjangerNavn()){
+                counter++;
+            }
+        }
+        return counter;
     }
 
     @Override

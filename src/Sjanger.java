@@ -1,11 +1,11 @@
 public class Sjanger {
-    private String[] sjangere;
+    private String sjanger;
 
-    public String[] getSjangere() {
-        return sjangere;
+    public String getSjangerNavn() {
+        return sjanger;
     }
 
-    public void setSjangere(String[] sjangere) {
-        this.sjangere = sjangere;
+    public void setSjangere(String sjanger) {
+        this.sjanger = sjanger;
     }
 }

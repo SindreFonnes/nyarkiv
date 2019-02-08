@@ -3,7 +3,7 @@ public class CD {
     private String Artist;
     private String Navn;
     private String Aar;
-    private String Sjanger;
+    private Sjanger Sjanger;
     private String Plateselskap;
 
 
@@ -11,7 +11,7 @@ public class CD {
     public CD(){
 
     }
-    public CD (int cdNr, String Artist, String Navn, String Aar, String Sjanger, String Plateselskap){
+    public CD (int cdNr, String Artist, String Navn, String Aar, Sjanger Sjanger, String Plateselskap){
 
         this.cdNr = cdNr;
 
@@ -57,11 +57,11 @@ public class CD {
         Aar = aar;
     }
 
-    public String getSjanger() {
+    public Sjanger getSjanger() {
         return Sjanger;
     }
 
-    public void setSjanger(String sjanger) {
+    public void setSjanger(Sjanger sjanger) {
         Sjanger = sjanger;
     }
 
